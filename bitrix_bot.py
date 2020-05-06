@@ -8,7 +8,7 @@ from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 import os
 TOKEN = os.environ.get('TOKEN')
-GROUP_ID = os.environ.get('GROUP_ID')
+GROUP_ID = int(os.environ.get('GROUP_ID'))
 TOKEN_BITRIX = os.environ.get('TOKEN_BITRIX')
 DOMAIN = os.environ.get('DOMAIN')
 logging.info('Keys are getting')
