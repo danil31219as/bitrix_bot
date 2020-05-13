@@ -13,7 +13,7 @@ DOMAIN = str(os.environ.get('DOMAIN'))
 logging.info('Keys are getting')
 WAY = 'UF_CRM_1588349613887'
 COLLABORATORS_LIST = [9, 11]
-HASH = {'i_collaborators': 0}
+HASH = {}
 PRODUCT_DICT = {'вконтакте': {"PRODUCT_ID": 9, "PRICE": 300},
                 'telegram': {"PRODUCT_ID": 7, "PRICE": 400},
                 'other.platform': {"PRODUCT_ID": 15, "PRICE": 350},
@@ -148,7 +148,7 @@ class BitrixBot():
             HASH[self.user_id]['ask'] = 'false'
             id = HASH[self.user_id]['id']
             deal = self.btx.callMethod('crm.deal.get', ID=id)
-            self.btx.callMethod('im.notify', to=deal['ASSIGNED_BY_ID'],
+            self.btx.callMethod('im.notify', to=29,
                                 message=f'Есть вопрос по {"№".join(deal["TITLE"].split("#"))}',
                                 type='SYSTEM')
             self.btx.callMethod('im.notify', to=1,
@@ -370,7 +370,7 @@ class BitrixBot():
     def final(self):
         id = HASH[self.user_id]['id']
         deal = self.btx.callMethod('crm.deal.get', ID=id)
-        self.btx.callMethod('im.notify', to=deal['ASSIGNED_BY_ID'],
+        self.btx.callMethod('im.notify', to=29,
                             message=f'Оформлена {"№".join(deal["TITLE"].split("#"))}',
                             type='SYSTEM')
         self.btx.callMethod('im.notify', to=1,
@@ -391,7 +391,7 @@ class BitrixBot():
         search = f'https://{DOMAIN}.bitrix24.ru/rest/1/{TOKEN_BITRIX}/crm.deal.productrows.set/?id={id}'
         products = HASH[self.user_id]['products'].split('_')
         for i in range(len(products)):
-            search += f'&rows[{i}][PRODUCT_ID]={PRODUCT_DICT[products[i]]["PRODUCT_ID"]}&rows[{i}][PRICE]={PRODUCT_DICT[products[i]]["PRICE"]}'
+            search += f'&rows[{i}][PRODUCT_ID]={PRODUCT_DICT[products[i]]["PRODUCT_ID"]}&rows[{i}][PRICE]={PRODUCT_DICT[products[i]]["PRICE"] * 0.5}'
         requests.get(search)
 
     def check_contact(self, object):
