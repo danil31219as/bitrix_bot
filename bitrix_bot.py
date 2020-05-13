@@ -12,7 +12,7 @@ TOKEN_BITRIX = str(os.environ.get('TOKEN_BITRIX'))
 DOMAIN = str(os.environ.get('DOMAIN'))
 logging.info('Keys are getting')
 WAY = 'UF_CRM_1588349613887'
-COLLABORATORS_LIST = [9, 11]
+
 HASH = {}
 PRODUCT_DICT = {'вконтакте': {"PRODUCT_ID": 9, "PRICE": 300},
                 'telegram': {"PRODUCT_ID": 7, "PRICE": 400},
@@ -161,14 +161,8 @@ class BitrixBot():
     def start(self, text):
         if text.startswith('хочу бота'):
             contact_id = HASH[self.user_id]['contact_id']
-            i_collaborators = HASH['i_collaborators']
-            HASH['i_collaborators'] += 1
             id = self.btx.callMethod("crm.deal.add",
-                                     fields={'CONTACT_ID': contact_id,
-                                             'ASSIGNED_BY_ID':
-                                                 COLLABORATORS_LIST[
-                                                     i_collaborators % len(
-                                                         COLLABORATORS_LIST)]})
+                                     fields={'CONTACT_ID': contact_id})
             HASH[self.user_id]['id'] = id
             HASH[self.user_id]['now'] = "platform"
             keyboard = create_keyboard(
