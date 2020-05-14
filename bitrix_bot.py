@@ -6,7 +6,6 @@ import requests
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 import os
-
 TOKEN = str(os.environ.get('TOKEN'))
 GROUP_ID = int(os.environ.get('GROUP_ID'))
 TOKEN_BITRIX = str(os.environ.get('TOKEN_BITRIX'))
@@ -121,7 +120,7 @@ class BitrixBot():
                                                  })
                 HASH[self.user_id]['contact_id'] = id
             self.vk.messages.send(user_id=self.user_id,
-                                  message=f'Вас приветствует служба покупки ботов от проекта 2DYeS&#128104;&#8205;&#128187;',
+                                  message=f'Вас приветствует служба покупки ботов DanAsOne&#128104;&#8205;&#128187;',
                                   random_id=random.randint(0, 2 ** 64))
             self.vk.messages.send(user_id=self.user_id,
                                   message=f'Следуйте инструкциям на клавиатуре&#9000;',
@@ -262,7 +261,7 @@ class BitrixBot():
             keyboard = create_keyboard(
                 buttons=[['Хочу бота&#129302;', VkKeyboardColor.POSITIVE]])
             self.vk.messages.send(user_id=self.user_id,
-                                  message=f'Вас приветствует служба покупки ботов от проекта 2DYeS&#128104;&#8205;&#128187;',
+                                  message=f'Вас приветствует служба покупки ботов DanAsOne&#128104;&#8205;&#128187;',
                                   random_id=random.randint(0, 2 ** 64))
             self.vk.messages.send(user_id=self.user_id,
                                   message=f'Следуйте инструкциям на клавиатуре&#9000;',
