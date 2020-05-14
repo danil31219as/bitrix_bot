@@ -6,6 +6,7 @@ import requests
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 import os
+
 TOKEN = str(os.environ.get('TOKEN'))
 GROUP_ID = int(os.environ.get('GROUP_ID'))
 TOKEN_BITRIX = str(os.environ.get('TOKEN_BITRIX'))
@@ -148,9 +149,6 @@ class BitrixBot():
             HASH[self.user_id]['ask'] = 'false'
             id = HASH[self.user_id]['id']
             deal = self.btx.callMethod('crm.deal.get', ID=id)
-            self.btx.callMethod('im.notify', to=29,
-                                message=f'Есть вопрос по {"№".join(deal["TITLE"].split("#"))}',
-                                type='SYSTEM')
             self.btx.callMethod('im.notify', to=1,
                                 message=f'Есть вопрос по {"№".join(deal["TITLE"].split("#"))}',
                                 type='SYSTEM')
@@ -240,7 +238,7 @@ class BitrixBot():
                          ['Отменить заказ', VkKeyboardColor.NEGATIVE]], d=1,
                 ask=False)
             self.vk.messages.send(user_id=self.user_id,
-                                  message=f'Предварительная стоимость составляет {cost}\nПредоплата {cost * 0.3}&#128179;\nВы согласны с условиями?',
+                                  message=f'Предварительная стоимость составляет {cost}\nПредоплата {cost * 0.3}&#128179;(-50% на всё!!!)\nВы согласны с условиями?',
                                   random_id=random.randint(0, 2 ** 64),
                                   keyboard=keyboard)
 
@@ -364,9 +362,6 @@ class BitrixBot():
     def final(self):
         id = HASH[self.user_id]['id']
         deal = self.btx.callMethod('crm.deal.get', ID=id)
-        self.btx.callMethod('im.notify', to=29,
-                            message=f'Оформлена {"№".join(deal["TITLE"].split("#"))}',
-                            type='SYSTEM')
         self.btx.callMethod('im.notify', to=1,
                             type='SYSTEM',
                             message=f'Оформлена {"№".join(deal["TITLE"].split("#"))}'
