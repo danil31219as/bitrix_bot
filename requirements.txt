@@ -11,7 +11,7 @@ Flask==1.1.2
 flask-ngrok==0.0.25
 idna==2.9
 itsdangerous==1.1.0
-Jinja2==2.11.2
+Jinja2==2.11.3
 MarkupSafe==1.1.1
 multidimensional-urlencode==0.0.4
 numpy==1.18.3
