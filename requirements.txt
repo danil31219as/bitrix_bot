@@ -14,7 +14,7 @@ itsdangerous==1.1.0
 Jinja2==2.11.2
 MarkupSafe==1.1.1
 multidimensional-urlencode==0.0.4
-numpy==1.18.3
+numpy==1.22.0
 pandas==1.0.3
 protobuf==3.11.3
 pycparser==2.20
